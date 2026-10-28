@@ -1,0 +1,8 @@
+.env
+.chroma_ckp03/
+base_challenge
+__pycache__/
+*.pyc
+.DS_Store
+.gradio/
+.ipynb_checkpoints/

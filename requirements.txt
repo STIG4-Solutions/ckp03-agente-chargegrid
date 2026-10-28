@@ -1,0 +1,13 @@
+# CKP03 · Agente Inteligente · versões testadas (as mesmas instaladas pelo notebook no Colab)
+langchain==0.3.30
+langchain-core==0.3.86
+langchain-community==0.3.31
+langchain-ollama==0.3.10
+langchain-chroma==0.2.6
+langchain-text-splitters==0.3.11
+ollama==0.6.3
+chromadb==1.5.9
+pymupdf==2.0
+rank_bm25==0.2.2
+gradio==6.30.0
+pandas
