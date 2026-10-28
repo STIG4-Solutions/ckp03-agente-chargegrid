@@ -146,8 +146,8 @@ tool.
 1. Abra o [notebook no Colab](https://colab.research.google.com/github/STIG4-Solutions/ckp03-agente-chargegrid/blob/main/ckp03_agente.ipynb).
 2. Em **Secrets** (ícone de chave na barra lateral), adicione `OLLAMA_API_KEY` com a chave da
    Ollama Cloud e ligue o acesso do notebook.
-3. **Ambiente de execução → Executar tudo.** A primeira execução leva de 8 a 12 minutos
-   (instalação, Ollama local para os embeddings e indexação de 1.733 fragmentos).
+3. **Ambiente de execução → Executar tudo.** A primeira execução no Colab gratuito leva cerca de 25
+   minutos, quase todo o tempo na indexação dos 1.733 fragmentos (embeddings em CPU).
 4. A última célula imprime a URL pública `https://….gradio.live`.
 
 **Por que o notebook instala o Ollama.** O chat usa o `gemma4:cloud` na Ollama Cloud,

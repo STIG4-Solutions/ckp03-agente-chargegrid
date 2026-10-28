@@ -76,7 +76,7 @@ md("""
 No Colab: **Secrets** (ícone de chave na barra lateral) → adicionar `OLLAMA_API_KEY` com a chave da
 Ollama Cloud e ligar o acesso deste notebook. A chave não aparece em nenhuma célula.
 
-A primeira execução leva de 8 a 12 minutos: instala as dependências, sobe o Ollama para os
+A primeira execução no Colab gratuito leva cerca de 25 minutos: instala as dependências, sobe o Ollama para os
 embeddings e indexa a base (1.733 fragmentos).
 """)
 
@@ -87,9 +87,20 @@ os.environ["TQDM_DISABLE"] = "1"
 EM_COLAB = "google.colab" in sys.modules
 
 if EM_COLAB:
-    !pip -q install "langchain==0.3.30" "langchain-community==0.3.31" "langchain-ollama==0.3.10" \\
-        "langchain-chroma==0.2.6" "langchain-text-splitters==0.3.11" "chromadb==1.5.9" \\
-        "langchain-core==0.3.86" "ollama==0.6.3" "pymupdf==2.0" "rank_bm25==0.2.2" "gradio==6.30.0"
+    # O resolvedor do pip avisa conflitos com pacotes pré-instalados do Colab que este notebook
+    # não usa (langgraph, google-adk). O log vai para um arquivo; a célula só falha se a
+    # instalação falhar de fato.
+    PACOTES = ["langchain==0.3.30", "langchain-community==0.3.31", "langchain-ollama==0.3.10",
+               "langchain-chroma==0.2.6", "langchain-text-splitters==0.3.11", "chromadb==1.5.9",
+               "langchain-core==0.3.86", "ollama==0.6.3", "pymupdf==2.0", "rank_bm25==0.2.2",
+               "gradio==6.30.0"]
+    with open("pip_install.log", "w") as log:
+        instalacao = subprocess.run([sys.executable, "-m", "pip", "install", "-q", *PACOTES],
+                                    stdout=log, stderr=subprocess.STDOUT)
+    if instalacao.returncode != 0:
+        print(open("pip_install.log").read()[-3000:])
+        raise RuntimeError("Falha na instalação das dependências (ver pip_install.log)")
+    print("Dependências instaladas:", len(PACOTES), "pacotes fixados")
 os.makedirs("ckp03", exist_ok=True)
 open("ckp03/__init__.py", "a").close()
 print("Colab" if EM_COLAB else "Execução local", "· Python", sys.version.split()[0])
