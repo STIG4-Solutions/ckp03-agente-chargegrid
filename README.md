@@ -22,9 +22,24 @@ usar uma calculadora ou responder direto, e mostra o raciocínio e as fontes.
 |---|---|
 | Notebook no Colab (leitura) | https://colab.research.google.com/github/STIG4-Solutions/ckp03-agente-chargegrid/blob/main/ckp03_agente.ipynb |
 | Notebook executado (.ipynb) | [`ckp03_agente.ipynb`](ckp03_agente.ipynb) |
-| URL pública do Gradio (`share=True`) | {{URL_PUBLICA}} |
-| Comprovação da URL ativa | {{COMPROVACAO}} |
+| URL pública do Gradio (`share=True`) | https://6c5521e519f81c2fa5.gradio.live (gerada em 29/10/2026, 01h12) |
+| Comprovação da URL ativa | prints abaixo, com o endereço na barra do navegador |
 | Repositório do RAG do grupo (EV Challenge, Sprint 4) | https://github.com/STIG4-Solutions/chatbot_sprint4_challenge2026 |
+
+### Comprovação da URL pública ativa
+
+Interface aberta pela URL pública `6c5521e519f81c2fa5.gradio.live`, gerada por
+`demo.launch(share=True)` em `app.py`.
+
+**Pergunta que exige RAG:** o agente chama `buscar_base_chargegrid` e responde com a
+REN 1.000/2021, Art. 554; o painel lista os documentos e páginas recuperados.
+
+![URL pública: pergunta respondida com o RAG](docs/img/url_publica_rag.png)
+
+**Pergunta que exige calculadora:** na mesma sessão, o agente chama
+`calcular_folga_demanda` sem consultar a base.
+
+![URL pública: pergunta respondida com a calculadora de folga](docs/img/url_publica_calculadora.png)
 
 ---
 
